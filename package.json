@@ -1,0 +1,40 @@
+{
+  "name": "generator-greenfoot",
+  "version": "1.3.3",
+  "description": "A Yeoman generator for a Greenfoot project with Maven",
+  "keywords": [
+    "yeoman-generator",
+    "Java",
+    "Greenfoot",
+    "Games"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lfuelling/generator-greenfoot"
+  },
+  "author": {
+    "name": "Lukas Fülling",
+    "email": "lukas@k40s.net",
+    "url": "http://lerk.io"
+  },
+  "license": "Beerware",
+  "bugs": {
+    "url": "https://github.com/lfuelling/generator-greenfoot/issues"
+  },
+  "preferGlobal": true,
+  "homepage": "https://www.npmjs.com/package/generator-greenfoot",
+  "dependencies": {
+    "chalk": "1.x.x",
+    "yeoman-generator": "0.x.x"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "chai": "^3.5.0",
+    "chai-fs": "^0.1.0",
+    "yeoman-test": "^1.1.0"
+  }
+}
