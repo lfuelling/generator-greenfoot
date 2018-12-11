@@ -12,55 +12,61 @@ module.exports = class extends Generator {
       {
         type: 'string',
         name: 'packageGroup',
-        message: '(1/10) What is your package group?',
+        message: '(1/11) What is your package group?',
         default: 'com.example'
       },
       {
         type: 'string',
         name: 'packageArtifact',
-        message: '(2/10) What is your artifactId?',
+        message: '(2/11) What is your artifactId?',
         default: 'greenfoot'
       },
       {
         type: 'string',
         name: 'packageName',
-        message: '(3/10) What is your default package name?',
+        message: '(3/11) What is your default package name?',
         default: 'com.example.greenfoot'
       },
       {
         type: 'string',
         name: 'baseName',
-        message: '(4/10) What is the base name of the app? (lowercase, no whitespaces)',
+        message: '(4/11) What is the base name of the app? (lowercase, no whitespaces)',
         default: 'greenfoot-example'
       }, {
         type: 'string',
         name: 'appName',
-        message: '(5/10) What is the title of your app?',
+        message: '(5/11) What is the title of your app?',
         default: 'Greenfoot Example'
       },
       {
         type: 'string',
         name: 'appDescription',
-        message: '(6/10) Give a short description of your project.',
+        message: '(6/11) Give a short description of your project.',
         default: 'This app does awesome things.'
       },
       {
         type: 'string',
         name: 'mainWorldName',
-        message: '(7/10) What is the name of your main World?',
+        message: '(7/11) What is the name of your main World?',
         default: 'MyWorld'
       },
       {
         type: 'string',
         name: 'mainActorName',
-        message: '(9/10) What is the name of the main Actor class?',
+        message: '(9/11) What is the name of the main Actor class?',
         default: 'MyActor'
       },
       {
         type: 'string',
         name: 'mainClassName',
-        message: '(10/10) What is the name of the Launcher class?',
+        message: '(10/11) What is the name of the Launcher class?',
         default: 'App'
+      },
+      {
+        type: 'confirm',
+        name: 'useGit',
+        message: '(11/11) Do you want to use git?',
+        default: true
       }
     ];
 
@@ -77,6 +83,7 @@ module.exports = class extends Generator {
       this.fullMainWorldName = `${props.packageName}.${props.mainWorldName}`;
       this.fullMainActorName = `${props.packageName}.${props.mainActorName}`;
       this.fullMainClassName = `${props.packageName}.${props.mainClassName}`;
+      this.useGit = props.useGit;
     });
   }
 
@@ -85,12 +92,10 @@ module.exports = class extends Generator {
     const packageFolder = this.packageName.replace(/\./g, '/');
     const javaDir = 'src/main/java/' + packageFolder + '/';
     const resourceDir = 'src/main/resources/';
-    const basename = this.baseName + '/';
     const javaDirTemplate = 'src/main/java/package/';
     const resourceDirTemplate = 'src/main/resources/';
 
-    chalk.white('basename is: ' + basename);
-    chalk.white('package folder is: ' + javaDir);
+    console.log(chalk.dim('Writing files...'));
 
     // Project
     this.fs.copyTpl(this.templatePath('pom.xml'), this.destinationPath('pom.xml'), this);
@@ -113,6 +118,9 @@ module.exports = class extends Generator {
   }
 
   install() {
-    // noop
+    if(this.useGit) {
+      console.log(chalk.dim('Running \'git init\'...'));
+      this.spawnCommand('git',['init']);
+    }
   }
 };
