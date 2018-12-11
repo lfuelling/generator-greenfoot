@@ -107,10 +107,10 @@ module.exports = class extends Generator {
 
     // Resources - base
     this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'standalone.properties'), this.destinationPath(resourceDir + 'standalone.properties'), this);
-    this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'project.greenfoot'), this.destinationPath(resourceDir + 'project.greenfoot'), this);
     this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'README.txt'), this.destinationPath(resourceDir + 'README.txt'), this);
     this.fs.copy(this.templatePath(resourceDirTemplate + 'soundindex.list'), this.destinationPath(resourceDir + 'soundindex.list'));
     this.fs.copy(this.templatePath(resourceDirTemplate + 'images/world.png'), this.destinationPath(resourceDir + 'images/world.png'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'images/actor.png'), this.destinationPath(resourceDir + 'images/actor.png'));
 
     // Base folder stuff
     this.fs.copy(this.templatePath('.npmignore'), this.destinationPath('.gitignore'));
