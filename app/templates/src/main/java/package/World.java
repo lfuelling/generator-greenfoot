@@ -1,7 +1,7 @@
 package <%= packageName %>;
 
 import greenfoot.*;
-import <%= fullMainActorName %>
+import <%= fullMainActorName %>;
 
 public class <%= mainWorldName %> extends World {
 

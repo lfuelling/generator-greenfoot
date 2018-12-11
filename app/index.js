@@ -76,6 +76,7 @@ module.exports = class extends Generator {
       this.mainClassName = props.mainClassName;
       this.fullMainWorldName = `${props.packageName}.${props.mainWorldName}`;
       this.fullMainActorName = `${props.packageName}.${props.mainActorName}`;
+      this.fullMainClassName = `${props.packageName}.${props.mainClassName}`;
     });
   }
 
@@ -92,27 +93,23 @@ module.exports = class extends Generator {
     chalk.white('package folder is: ' + javaDir);
 
     // Project
-    this.template('pom.xml', 'pom.xml', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+    this.fs.copyTpl(this.templatePath('pom.xml'), this.destinationPath('pom.xml'), this);
 
     // Java - base
-    this.template(javaDirTemplate + 'App.java', javaDir + this.mainClassName +'.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-    this.template(javaDirTemplate + 'World.java', javaDir + this.mainWorldName +'.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-    this.template(javaDirTemplate + 'Actor.java', javaDir + this.mainActorName +'.java', this, {'interpolate': /<%=([\s\S]+?)%>/g});
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'App.java'), this.destinationPath(javaDir + this.mainClassName +'.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'World.java'), this.destinationPath(javaDir + this.mainWorldName +'.java'), this);
+    this.fs.copyTpl(this.templatePath(javaDirTemplate + 'Actor.java'), this.destinationPath(javaDir + this.mainActorName +'.java'), this);
 
     // Resources - base
-    this.template(resourceDirTemplate + 'standalone.properties', resourceDir + 'standalone.properties', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-    this.template(resourceDirTemplate + 'project.greenfoot', resourceDir + 'project.greenfoot', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-    this.template(resourceDirTemplate + 'README.txt', resourceDir + 'README.txt', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-    this.template(resourceDirTemplate + 'soundindex.list', resourceDir + 'soundindex.list', this, {});
-    this.template(resourceDirTemplate + 'images/world.png', resourceDir + 'images/world.png', this, {});
+    this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'standalone.properties'), this.destinationPath(resourceDir + 'standalone.properties'), this);
+    this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'project.greenfoot'), this.destinationPath(resourceDir + 'project.greenfoot'), this);
+    this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'README.txt'), this.destinationPath(resourceDir + 'README.txt'), this);
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'soundindex.list'), this.destinationPath(resourceDir + 'soundindex.list'));
+    this.fs.copy(this.templatePath(resourceDirTemplate + 'images/world.png'), this.destinationPath(resourceDir + 'images/world.png'));
 
     // Base folder stuff
-    this.template('.npmignore', '.gitignore', this, {});
-    this.template('README.md', 'README.md', this, {'interpolate': /<%=([\s\S]+?)%>/g});
-
-    this.config.set('packageName', this.packageName);
-    this.config.set('baseName', this.baseName);
-    this.config.set('appName', this.appName);
+    this.fs.copy(this.templatePath('.npmignore'), this.destinationPath('.gitignore'));
+    this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), this);
   }
 
   install() {

@@ -1,6 +1,6 @@
 package <%= packageName %>;
 
-import greenfoot.*;
+import greenfoot.export.GreenfootScenarioMain;
 
 public class <%= mainClassName %> extends GreenfootScenarioMain {
 

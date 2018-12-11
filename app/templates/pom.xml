@@ -10,7 +10,7 @@
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
   <description>
-    <%= serviceDescription %>
+    <%= appDescription %>
   </description>
 
   <properties>
@@ -57,7 +57,7 @@
           </excludes>
           <archive>
             <manifest>
-              <mainClass>$main-class$</mainClass>
+              <mainClass><%= fullMainClassName %></mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -67,7 +67,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>$main-class$</mainClass>
+              <mainClass><%= fullMainClassName %></mainClass>
             </manifest>
           </archive>
           <descriptorRefs>
