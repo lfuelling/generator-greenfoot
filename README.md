@@ -1,4 +1,4 @@
-[![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY) [![Dependency Status](https://david-dm.org/lfuelling/generator-greenfoot.svg)](https://david-dm.org/lfuelling/generator-greenfoot) [![Downloads](https://img.shields.io/npm/dm/generator-greenfoot.svg)](https://img.shields.io/) [![Version](https://img.shields.io/npm/v/generator-greenfoot.svg)](https://img.shields.io/)
+[![Unicorn](https://img.shields.io/badge/unicorn-approved-ff69b4.svg?style=flat)](https://www.youtube.com/watch?v=qRC4Vk6kisY) [![Dependency Status](https://david-dm.org/lfuelling/generator-greenfoot.svg)](https://david-dm.org/lfuelling/generator-greenfoot) [![Downloads](https://img.shields.io/npm/dm/generator-greenfoot.svg)](https://img.shields.io/) [![Version](https://img.shields.io/npm/v/generator-greenfoot.svg)](https://www.npmjs.com/package/generator-greenfoot)
 
 # Greenfoot Generator
 
