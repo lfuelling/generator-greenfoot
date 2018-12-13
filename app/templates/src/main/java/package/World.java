@@ -22,7 +22,7 @@ public class <%= mainWorldName %> extends World {
   private void prepare()
   {
     <%= mainActorName %> actor = new <%= mainActorName %>();
-    addObject(actor, 50, 50);
+    addObject(actor, 100, 50);
   }
 
 }

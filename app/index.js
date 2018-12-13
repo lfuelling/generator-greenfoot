@@ -12,60 +12,66 @@ module.exports = class extends Generator {
       {
         type: 'string',
         name: 'packageGroup',
-        message: '(1/11) What is your package group?',
+        message: '(1/12) What is your package group?',
         default: 'com.example'
       },
       {
         type: 'string',
         name: 'packageArtifact',
-        message: '(2/11) What is your artifactId?',
+        message: '(2/12) What is your artifactId?',
         default: 'greenfoot'
       },
       {
         type: 'string',
         name: 'packageName',
-        message: '(3/11) What is your default package name?',
+        message: '(3/12) What is your default package name?',
         default: 'com.example.greenfoot'
       },
       {
         type: 'string',
         name: 'baseName',
-        message: '(4/11) What is the base name of the app? (lowercase, no whitespaces)',
+        message: '(4/12) What is the base name of the app? (lowercase, no whitespaces)',
         default: 'greenfoot-example'
       }, {
         type: 'string',
         name: 'appName',
-        message: '(5/11) What is the title of your app?',
+        message: '(5/12) What is the title of your app?',
         default: 'Greenfoot Example'
       },
       {
         type: 'string',
         name: 'appDescription',
-        message: '(6/11) Give a short description of your project.',
+        message: '(6/12) Give a short description of your project.',
         default: 'This app does awesome things.'
       },
       {
         type: 'string',
         name: 'mainWorldName',
-        message: '(7/11) What is the name of your main World?',
+        message: '(7/12) What is the name of your main World?',
         default: 'MyWorld'
       },
       {
         type: 'string',
         name: 'mainActorName',
-        message: '(9/11) What is the name of the main Actor class?',
+        message: '(9/12) What is the name of the main Actor class?',
         default: 'MyActor'
       },
       {
         type: 'string',
         name: 'mainClassName',
-        message: '(10/11) What is the name of the Launcher class?',
+        message: '(10/12) What is the name of the Launcher class?',
         default: 'App'
       },
       {
         type: 'confirm',
         name: 'useGit',
-        message: '(11/11) Do you want to use git?',
+        message: '(11/12) Do you want to use git?',
+        default: true
+      },
+      {
+        type: 'confirm',
+        name: 'addCustomFontClass',
+        message: '(11/12) Do you plan to use custom fonts?',
         default: true
       }
     ];
@@ -84,6 +90,7 @@ module.exports = class extends Generator {
       this.fullMainActorName = `${props.packageName}.${props.mainActorName}`;
       this.fullMainClassName = `${props.packageName}.${props.mainClassName}`;
       this.useGit = props.useGit;
+      this.addCustomFontClass = props.addCustomFontClass;
     });
   }
 
@@ -104,6 +111,9 @@ module.exports = class extends Generator {
     this.fs.copyTpl(this.templatePath(javaDirTemplate + 'App.java'), this.destinationPath(javaDir + this.mainClassName +'.java'), this);
     this.fs.copyTpl(this.templatePath(javaDirTemplate + 'World.java'), this.destinationPath(javaDir + this.mainWorldName +'.java'), this);
     this.fs.copyTpl(this.templatePath(javaDirTemplate + 'Actor.java'), this.destinationPath(javaDir + this.mainActorName +'.java'), this);
+    if(this.addCustomFontClass) {
+      this.fs.copyTpl(this.templatePath(javaDirTemplate + 'CustomFont.java'), this.destinationPath('src/main/java/greenfoot/' + 'CustomFont.java'), this);
+    }
 
     // Resources - base
     this.fs.copyTpl(this.templatePath(resourceDirTemplate + 'standalone.properties'), this.destinationPath(resourceDir + 'standalone.properties'), this);
@@ -112,6 +122,9 @@ module.exports = class extends Generator {
     this.fs.copy(this.templatePath(resourceDirTemplate + 'soundindex.list'), this.destinationPath(resourceDir + 'soundindex.list'));
     this.fs.copy(this.templatePath(resourceDirTemplate + 'images/world.png'), this.destinationPath(resourceDir + 'images/world.png'));
     this.fs.copy(this.templatePath(resourceDirTemplate + 'images/actor.png'), this.destinationPath(resourceDir + 'images/actor.png'));
+    if(this.addCustomFontClass) {
+      this.fs.copy(this.templatePath(resourceDirTemplate + 'fonts/unifont.ttf'), this.destinationPath(resourceDir + 'fonts/unifont.ttf'));
+    }
 
     // Base folder stuff
     this.fs.copy(this.templatePath('.npmignore'), this.destinationPath('.gitignore'));
