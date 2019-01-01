@@ -127,7 +127,7 @@ module.exports = class extends Generator {
     }
 
     // Base folder stuff
-    this.fs.copy(this.templatePath('.npmignore'), this.destinationPath('.gitignore'));
+    this.fs.copy(this.templatePath('ignore'), this.destinationPath('.gitignore'));
     this.fs.copyTpl(this.templatePath('README.md'), this.destinationPath('README.md'), this);
   }
 
