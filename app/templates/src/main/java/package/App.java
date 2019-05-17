@@ -1,14 +1,14 @@
 package <%= packageName %>;
 
-import greenfoot.export.GreenfootScenarioMain;
+import greenfoot.export.GreenfootScenarioApplication;
 
-public class <%= mainClassName %> extends GreenfootScenarioMain {
+public class <%= mainClassName %> extends GreenfootScenarioApplication {
 
  /**
   * Main method for <%= appName %>. This gets executed before anything else.
   */
   public static void main(String[] args) {
-    GreenfootScenarioMain.main(args);
+    GreenfootScenarioApplication.launch(args);
   }
 }
 
