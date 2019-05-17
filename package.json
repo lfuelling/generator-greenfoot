@@ -1,6 +1,6 @@
 {
   "name": "generator-greenfoot",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A Yeoman generator for a Greenfoot project with Maven",
   "keywords": [
     "yeoman-generator",
