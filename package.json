@@ -30,6 +30,6 @@
   },
   "devDependencies": {
     "jest": "^24.8.0",
-    "yeoman-test": "^1.9.0"
+    "yeoman-test": "^2.0.0"
   }
 }
