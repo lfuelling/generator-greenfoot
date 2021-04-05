@@ -25,7 +25,7 @@
   "repository": "lfuelling/generator-greenfoot",
   "homepage": "https://www.npmjs.com/package/generator-greenfoot",
   "dependencies": {
-    "yeoman-generator": "^3.1.1",
+    "yeoman-generator": "^5.2.0",
     "chalk": "^4.1.0"
   },
   "devDependencies": {
